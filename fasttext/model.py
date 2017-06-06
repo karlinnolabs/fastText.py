@@ -62,6 +62,8 @@ class SupervisedModel(object):
     def predict(self, texts, k=1):
         all_labels = []
         for text in texts:
+            if len(text.strip()) == 0:
+                continue
             if text[-1] != '\n':
                 text += '\n'
             labels = self._model.classifier_predict(text, k,
@@ -85,4 +87,3 @@ class ClassifierTestResult(object):
         self.precision = precision
         self.recall = recall
         self.nexamples = nexamples
-
